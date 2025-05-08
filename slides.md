@@ -102,8 +102,29 @@ greet("chioma"); //Output; Welcome back Chioma!!
 
 ## Callbacks
 
----
+A **Callback function** is a function passed into another function as an argument, which is then invoked inside the outer function to complete some kind of action.
 
+The execution may be immediate as in synchronous callback and it might happen later as in asynchronous callback. Callbacks allows you to reuse functions in flexible way.
+
+```js {monaco-run}
+function greet(name, callback) {
+  console.log("Hi " + name);
+  callback(); // calling the callback function
+}
+
+function sayBye() {
+  console.log("Bye!");
+}
+
+greet("Alice", sayBye);
+```
+### Output:
+Hi Alice
+Bye!
+
+Here, sayBye is passed as a callback to greet
+
+---
 # JavaScript Bundlers 101
 
 ## What is a Bundler?
