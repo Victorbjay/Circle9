@@ -38,7 +38,69 @@ The last comment block of each slide will be treated as slide notes. It will be 
 -->
 
 ---
+# JavaScript Functions
 
+Function is a block of reusable code that can perform a particular task, it can take in parameters and it's value(argument) also return a value, arrays and objects.
+
+Below are codes examples of how functions are used to perform tasks:
+
+ ```js
+  function greetUser(){
+       alert("you are welcome")
+  }
+
+  greetUser()
+
+```
+## Ways of declaring a function 
+ 
+## 1. Function Declaration:
+  It is the widely and default way of declaring a function and the exciting thing here is that it can be called before defining it.
+  
+   ```js
+   //Remember: The 'name' is a parameter and it accepts a value called argument.
+    greet("chioma") 
+
+   function greet(name){
+     console.log(`Welcome back ${name}!!`)
+   }
+    //Output; Welcome back Chioma!!
+ 
+   
+   ```
+---
+
+## 2. Functions Expression:
+  It is defined as a value and assigned to a variable, it can not be called before defining it.
+
+    ```js
+    let greet = function (name){
+      console.log(`Welcome back ${name}!!`)
+      }
+
+      greet("chioma") //Output; Welcome back Chioma!!
+
+    ```
+## 3. Arrow Function:
+   This was introduced in ES6 and it can be defined without the function keyword and also assigned to a variable and the essential thing is 
+   that the parameters and function body is seperated by "=>". it is very easy, short and handy to code with😊
+
+     ```
+     let greet = (name) => {
+        console.log(`Welcome back ${name}!!`)
+      }
+
+      greet("chioma") //Output; Welcome back Chioma!!
+
+     ```
+    
+---
+## Callbacks
+ 
+   
+
+
+---
 # JavaScript Bundlers 101
 
 ## What is a Bundler?
