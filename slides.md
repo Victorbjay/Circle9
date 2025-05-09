@@ -164,7 +164,7 @@ A **JavaScript bundler** takes many files and dependencies and combines them int
 
 ### ES Module
 
-```js
+```js {monaco-run}
 // utils.js
 export function greet(name) {
   return `Hello, ${name}`;
@@ -177,7 +177,7 @@ console.log(greet("Alice"));
 
 ### CommonJS
 
-```js
+```js {monaco-run}
 // utils.js
 function greet(name) {
   return `Hello, ${name}`;
@@ -218,7 +218,7 @@ In essence:
 
 # Webpack Example
 
-```js
+```js {monaco-run}
 // webpack.config.js
 module.exports = {
   entry: "./src/index.js", // where your app starts
@@ -238,7 +238,7 @@ _This is a basic Webpack configuration file_.
 
 ### File: src/utils.js
 
-```js
+```js {monaco-run}
 export function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
@@ -246,7 +246,7 @@ export function capitalize(str) {
 
 ### File: src/greet.js
 
-```js
+```js {monaco-run}
 import { capitalize } from "./utils.js";
 export function greet(name) {
   return `Hello, ${capitalize(name)}!`;
@@ -255,7 +255,7 @@ export function greet(name) {
 
 ### File: src/index.js
 
-```js
+```js {monaco-run}
 import { greet } from "./greet.js";
 console.log(greet("world"));
 ```
@@ -264,7 +264,7 @@ console.log(greet("world"));
 
 ## HTML Entry (index.html)
 
-```html
+```html {monaco-run}
 <!DOCTYPE html>
 <html>
   <head>
