@@ -275,11 +275,14 @@ The fetch method helps us send and receive data from a server.
 
 Here's an example of a simple fetch request in JavaScript:
 ```js
-fetch("https://reqres.in/api/users/2")
-  .then(response => response.json())
-  .then(data => console.log("User Data:", data))
-  .catch(error => console.error("Error fetching user:", error));
-```
+fetch("https://jsonplaceholder.typicode.com/users/1")
+  .then(response => response.json())  // Convert response to JSON
+  .then(user => {
+    console.log(`User Name: ${user.name}`);
+    console.log(`Email: ${user.email}`);
+    console.log(`City: ${user.address.city}`);
+  })
+  .catch(error => console.error("Error fetching user data:", error));
 ---
 
 # Steps to Make an API Call
@@ -321,10 +324,14 @@ For example:
 - We can search for restaurants. When we use the search bar, the app makes a GET request to fetch restaurant listings.
 
 ```js
-fetch("https://reqres.in/api/users/2")
-  .then(response => response.json())
-  .then(data => console.log("User Data:", data))
-  .catch(error => console.error("Error fetching user:", error));
+fetch("https://jsonplaceholder.typicode.com/users/1")
+  .then(response => response.json())  // Convert response to JSON
+  .then(user => {
+    console.log(`User Name: ${user.name}`);
+    console.log(`Email: ${user.email}`);
+    console.log(`City: ${user.address.city}`);
+  })
+  .catch(error => console.error("Error fetching user data:", error));
 ```
 ---
 
@@ -484,12 +491,9 @@ try {
     checkUserAge(500);
 } catch (error) {
     console.log(`Error caught: ${error.name} - ${error.message}`);
+}
 ```
 ---
-
-
-# Thank You
-
 
 # JavaScript Bundlers 101
 
