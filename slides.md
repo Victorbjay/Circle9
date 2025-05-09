@@ -1,4 +1,4 @@
----
+![image](https://github.com/user-attachments/assets/ac79a489-be1b-4234-86ba-75e5d4d94dff)---
 # You can also start simply with 'default'
 theme: seriph
 # random image from a curated Unsplash collection by Anthony
@@ -144,6 +144,52 @@ greet("Alice", sayBye);
 Here, sayBye is passed as a callback to greet
 
 ---
+# Promises
+
+## WHAT IS A PROMISE?
+
+This is a neater way to handle asynchronous operations in java script.
+
+## Why are promises a better alternative to callbacks?
+
+In a case where several callbacks would be needed, callbacks would eventually become inefficient, make code less readablw and can lead to 'callback hell'. Promises are very useful for such situations.
+
+---
+
+## POSSIBLE PROMISE STATES
+Promises can be in three states:
+- Pending: this is the initial state, the asynchronous operation has not completed yet. Like waiting for a friend to call you back.
+- Resolved: the asynchronous operation completed successfully and thus the promise has a resulting value. Your friend called back and gave you an answer.
+- Rejected: the asynchronous operation failed. Your friend never called you back.
+
+  ---
+  
+## PROMISE EXAMPLE AND FORMAT
+
+```
+const myPromise = new Promise((resolve, reject) => {
+let success = true;
+
+ if (success) {
+resolve("Operation successful");
+}
+ else {
+reject("Something went wrong"); }
+}
+);
+
+myPromise
+.then(result => console.log(result))     // If resolved
+ .catch(error => console.error(error));   // If rejected 
+```
+
+- To invoke a promise the `new Promise` key word is used. It takes two parameters; `resolve` and `reject'. The resolve holds if the callback is successful and reject holds if it is not i.e there is an errror.
+
+- The `.then' is used to handle successes. Each `.then()` returns a new promise, so you can chain multiple `.then() calls`.
+- The `.catch()` handles errors. It catches errors that occur in the promise chain before it.
+
+  ---
+
 
 # JavaScript Bundlers 101
 
