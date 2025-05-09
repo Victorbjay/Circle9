@@ -1,4 +1,5 @@
 ---
+---
 
 # You can also start simply with 'default'
 
@@ -165,8 +166,7 @@ calTwoNum(10, 8, display); //Output; 18.
 Here, display is passed as a callback to show output after calculating.
 
 ---
-
-## Promises
+# Promises
 
 **WHAT IS A PROMISE?**
 
@@ -186,8 +186,8 @@ Promises can be in three states:
 - Resolved: the asynchronous operation completed successfully and thus the promise has a resulting value. Your friend called back and gave you an answer.
 - Rejected: the asynchronous operation failed. Your friend never called you back.
 
----
-
+  ---
+  
 ## PROMISE EXAMPLE AND FORMAT
 
 ```js {monaco-run}
@@ -202,18 +202,19 @@ const myPromise = new Promise((resolve, reject) => {
 });
 
 myPromise
-  .then((result) => console.log(result)) // If resolved
-  .catch((error) => console.error(error)); // If rejected
+.then(result => console.log(result))     // If resolved
+ .catch(error => console.error(error));   // If rejected 
 ```
 
 - To invoke a promise the `new Promise` key word is used. It takes two parameters; `resolve` and `reject'. The resolve holds if the callback is successful and reject holds if it is not i.e there is an errror.
 
-- The `.then` is used to handle successes. Each `.then()`returns a new promise, so you can chain multiple`.then()`calls.
+- The `.then' is used to handle successes. Each `.then()` returns a new promise, so you can chain multiple `.then() calls`.
 - The `.catch()` handles errors. It catches errors that occur in the promise chain before it.
 
----
+  ---
 
-# JavaScript Bundlers
+
+# JavaScript Bundlers 101
 
 ## What is a Bundler?
 
@@ -385,7 +386,7 @@ Introduction to async & await
 
 # What are async and await?
 
-They are tools to handle asynchronous code in JavaScript in a clean, readable way — instead of using callbacks or `.then()` chains with Promises.
+They are tools to handle asynchronous code in JavaScript in a clean, readable way — instead of using callbacks or .then() chains with Promises.
 
 Think of async/await as a way to write asynchronous code that looks like synchronous code.
 
