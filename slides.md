@@ -1,48 +1,28 @@
----
+![image](https://github.com/user-attachments/assets/ac79a489-be1b-4234-86ba-75e5d4d94dff)---
 # You can also start simply with 'default'
-
 theme: seriph
-
 # random image from a curated Unsplash collection by Anthony
-
 # like them? see https://unsplash.com/collections/94734566/slidev
-
 background: https://cover.sli.dev
-
 # some information about your slides (markdown enabled)
-
-title: Welcome to Our Slidev
+title: Welcome to Slidev
 info: |
+  ## Slidev Starter Template
+  Presentation slides for developers.
 
-## Slidev Starter Template
-
-Presentation slides for developers.
-
-Learn more at [Sli.dev](https://sli.dev)
-
+  Learn more at [Sli.dev](https://sli.dev)
 # apply unocss classes to the current slide
-
 class: text-center
-
 # https://sli.dev/features/drawing
-
 drawings:
-persist: false
-
+  persist: false
 # slide transition: https://sli.dev/guide/animations.html#slide-transitions
-
 transition: slide-left
-
 # enable MDC Syntax: https://sli.dev/features/mdc
-
 mdc: true
-
 # open graph
-
 # seoMeta:
-
-# ogImage: https://cover.sli.dev
-
+#  ogImage: https://cover.sli.dev
 ---
 
 # JavaScript Summary from Circle 9
@@ -99,7 +79,7 @@ greetUser();
 
 ## Ways of declaring a function
 
-**1. Function Declaration**:
+## 1. Function Declaration:
 
 It is the widely and default way of declaring a function and the exciting thing here is that it can be called before defining it.
 
@@ -115,7 +95,7 @@ function greet(name) {
 
 ---
 
-**2. Functions Expression**:
+## 2. Functions Expression:
 
 It is defined as a value and assigned to a variable, it can not be called before defining it.
 
@@ -127,7 +107,7 @@ let greet = function (name) {
 greet("chioma"); //Output; Welcome back Chioma!!
 ```
 
-**3. Arrow Function**:
+## 3. Arrow Function:
 
 This was introduced in ES6 and it can be defined without the function keyword and also assigned to a variable and the essential thing is
 that the parameters and function body is seperated by "=>". it is very easy, short and handy to code with😊
@@ -164,55 +144,54 @@ Callbacks pay a big factor in asynchronous functions, where one function has to 
 Here, display is passed as a callback to show output after calculating.
 
 ---
+# Promises
 
-## Promises
-
-**WHAT IS A PROMISE?**
+## WHAT IS A PROMISE?
 
 This is a neater way to handle asynchronous operations in java script.
 
-**Why are promises a better alternative to callbacks?**
+## Why are promises a better alternative to callbacks?
 
 In a case where several callbacks would be needed, callbacks would eventually become inefficient, make code less readablw and can lead to 'callback hell'. Promises are very useful for such situations.
 
 ---
 
 ## POSSIBLE PROMISE STATES
-
 Promises can be in three states:
-
 - Pending: this is the initial state, the asynchronous operation has not completed yet. Like waiting for a friend to call you back.
 - Resolved: the asynchronous operation completed successfully and thus the promise has a resulting value. Your friend called back and gave you an answer.
 - Rejected: the asynchronous operation failed. Your friend never called you back.
 
-  ***
-
+  ---
+  
 ## PROMISE EXAMPLE AND FORMAT
 
-```js {monaco-run}
+```
 const myPromise = new Promise((resolve, reject) => {
-  let success = true;
+let success = true;
 
-  if (success) {
-    resolve("Operation successful");
-  } else {
-    reject("Something went wrong");
-  }
-});
+ if (success) {
+resolve("Operation successful");
+}
+ else {
+reject("Something went wrong"); }
+}
+);
 
 myPromise
-  .then((result) => console.log(result)) // If resolved
-  .catch((error) => console.error(error)); // If rejected
+.then(result => console.log(result))     // If resolved
+ .catch(error => console.error(error));   // If rejected 
 ```
 
 - To invoke a promise the `new Promise` key word is used. It takes two parameters; `resolve` and `reject'. The resolve holds if the callback is successful and reject holds if it is not i.e there is an errror.
 
-- The `.then` is used to handle successes. Each `.then()`returns a new promise, so you can chain multiple`.then()`calls.
+- The `.then' is used to handle successes. Each `.then()` returns a new promise, so you can chain multiple `.then() calls`.
 - The `.catch()` handles errors. It catches errors that occur in the promise chain before it.
 
----
+  ---
 
-# JavaScript Bundlers
+
+# JavaScript Bundlers 101
 
 ## What is a Bundler?
 
@@ -231,7 +210,7 @@ A **JavaScript bundler** takes many files and dependencies and combines them int
 
 ### ES Module
 
-```js
+```js {monaco-run}
 // utils.js
 export function greet(name) {
   return `Hello, ${name}`;
@@ -244,7 +223,7 @@ console.log(greet("Alice"));
 
 ### CommonJS
 
-```js
+```js {monaco-run}
 // utils.js
 function greet(name) {
   return `Hello, ${name}`;
@@ -305,7 +284,7 @@ _This is a basic Webpack configuration file_.
 
 ### File: src/utils.js
 
-```js
+```js {monaco-run}
 export function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
@@ -322,7 +301,7 @@ export function greet(name) {
 
 ### File: src/index.js
 
-```js
+```js {monaco-run}
 import { greet } from "./greet.js";
 console.log(greet("world"));
 ```
@@ -376,27 +355,27 @@ npx esbuild src/index.js --bundle --minify --outfile=dist/bundle.js
 - Use Webpack if you need advanced configuration
 - Use esbuild for raw speed and simplicity
 
+Happy bundling! 🎉
+
 # Async & Await in JavaScript
 
-Introduction to async & await
+ Introduction to async & await
 
 ---
 
 # What are async and await?
-
-They are tools to handle asynchronous code in JavaScript in a clean, readable way — instead of using callbacks or `.then()` chains with Promises.
+They are tools to handle asynchronous code in JavaScript in a clean, readable way — instead of using callbacks or .then() chains with Promises.
 
 Think of async/await as a way to write asynchronous code that looks like synchronous code.
 
 # Key Concepts
-
 async makes a function return a Promise.
 
 await pauses the execution of the async function until the Promise resolves.
 
 ---
 
-## What is Asynchronous Code?
+##  What is Asynchronous Code?
 
 JavaScript is **single-threaded** — it can only do one thing at a time.
 
@@ -404,13 +383,13 @@ But with **asynchronous code**, JS can:
 
 - Start a long-running task (e.g. API call)
 - Continue with other code
-- Come back when the task is finished
+- Come back when the task is finished 
 
 This prevents the app from **freezing** while waiting.
 
 ---
 
-## Why Use `async` and `await`?
+##  Why Use `async` and `await`?
 
 ✅ Makes asynchronous code look like normal synchronous code  
 ✅ Easier to read, write, and debug than `.then()` chains  
@@ -418,13 +397,13 @@ This prevents the app from **freezing** while waiting.
 
 ---
 
-## What is `async`?
+##  What is `async`?
 
 Adding `async` before a function:
 
 - Automatically makes it return a **Promise**
 
-```js {monaco-run}
+```js
 async function greet() {
   return "Hello!";
 }
@@ -437,19 +416,19 @@ function greet() {
 
 Usage:
 
-```js {monaco-run}
+```js
 greet().then(console.log); // Logs: Hello!
 ```
 
 ---
 
-## What is `await`?
+##  What is `await`?
 
 You use `await` **inside an async function** to pause execution until a Promise resolves:
 
-```js {monaco-run}
+```js
 function wait(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 async function showMessage() {
@@ -463,12 +442,12 @@ showMessage();
 
 ---
 
-## Error Handling with try/catch
+##  Error Handling with try/catch
 
-```js {monaco-run}
+```js
 async function getUserData() {
   try {
-    const res = await fetch("https://jsonplaceholder.typicode.com/users/1");
+    const res = await fetch('https://jsonplaceholder.typicode.com/users/1');
     const user = await res.json();
     console.log(user);
   } catch (err) {
@@ -479,13 +458,13 @@ async function getUserData() {
 getUserData();
 ```
 
-async function `getUserData()` — this is an asynchronous function.
+async function getUserData() — this is an asynchronous function.
 
-`fetch(...)` — sends a network request to get user data (from a public API).
+fetch(...) — sends a network request to get user data (from a public API).
 
-await `res.json()` — parses the response body as `JSON`.
+await res.json() — parses the response body as JSON.
 
-All this is wrapped in a try `{ ... } catch { ... }` block to catch errors like:
+All this is wrapped in a try { ... } catch { ... } block to catch errors like:
 No internet,
 Bad API URL,
 JSON parsing issues etc
@@ -494,12 +473,12 @@ If an error happens in any await line, the code jumps to the catch block.
 
 ---
 
-## Sequential vs Parallel `await`s
+##  Sequential vs Parallel `await`s
 
 ### Sequential (steps depend on each other):
 
 ```js
-const userRes = await fetch("/user");
+const userRes = await fetch('/user');
 const user = await userRes.json();
 const postsRes = await fetch(`/posts?userId=${user.id}`);
 ```
@@ -508,14 +487,14 @@ const postsRes = await fetch(`/posts?userId=${user.id}`);
 
 ```js
 const [usersRes, postsRes] = await Promise.all([
-  fetch("/users"),
-  fetch("/posts"),
+  fetch('/users'),
+  fetch('/posts')
 ]);
 ```
 
 ---
 
-## Summary
+##  Summary
 
 | Feature       | Description                           |
 | ------------- | ------------------------------------- |
@@ -526,6 +505,7 @@ const [usersRes, postsRes] = await Promise.all([
 
 ---
 
-## Thanks for Listening!
+##  Thanks for Listening!
 
 Got questions? Let’s discuss! 🙋‍♂️
+
