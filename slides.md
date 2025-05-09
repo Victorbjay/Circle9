@@ -25,17 +25,39 @@ mdc: true
 #  ogImage: https://cover.sli.dev
 ---
 
-# Circle 9
+# JavaScript Summary from Circle 9
 
-Presentation slides by Victor Okpe
+_A Tinyuka Production_<br>
+Presentation slides by:
+<br>
 
 <div @click="$slidev.nav.next" class="mt-12 py-1" hover:bg="white op-10">
-  Press Space for next page <carbon:arrow-right />
-</div>
+    Press Space for next page <carbon:arrow-right />
+  </div>
 
 <!--
 The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
 -->
+
+---
+
+# Team Players
+
+- Paul
+- Wafaqah
+- Tolu
+- Victor
+- Kaycee
+- Gbolahan
+- Iyin
+- Victoria
+- Ibrahim
+
+---
+
+# Table of Content
+
+<Toc text-sm minDepth="1" maxDepth="2" />
 
 ---
 
@@ -122,6 +144,7 @@ greet("Alice", sayBye);
 Here, sayBye is passed as a callback to greet
 
 ---
+
 # JavaScript Bundlers 101
 
 ## What is a Bundler?
