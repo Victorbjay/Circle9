@@ -118,9 +118,6 @@ function sayBye() {
 
 greet("Alice", sayBye);
 ```
-### Output:
-Hi Alice
-Bye!
 
 Here, sayBye is passed as a callback to greet
 
