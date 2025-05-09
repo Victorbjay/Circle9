@@ -122,26 +122,26 @@ greet("chioma"); //Output; Welcome back Chioma!!
 
 ---
 
-## Callbacks
+## Callbacks Functions
 
 A **Callback function** is a function passed into another function as an argument, which is then invoked inside the outer function to complete some kind of action.
 
-The execution may be immediate as in synchronous callback and it might happen later as in asynchronous callback. Callbacks allows you to reuse functions in flexible way.
+Callbacks pay a big factor in asynchronous functions, where one function has to wait for another function (like waiting for a file to load), it makes functions more reusable too. Callbacks allows you to reuse functions in flexible way.
 
-```js {monaco-run}
-function greet(name, callback) {
-  console.log("Hi " + name);
-  callback(); // calling the callback function
-}
+```js 
+ function display(value){
+    console.log(value)
+ }
 
-function sayBye() {
-  console.log("Bye!");
-}
+ function calTwoNum(num1, num2, callBack){
+   let sum = num1 + num2
+   callBack(sum)
+ }
 
-greet("Alice", sayBye);
+ calTwoNum(10,8, display); //Output; 18.
 ```
 
-Here, sayBye is passed as a callback to greet
+Here, display is passed as a callback to show output after calculating.
 
 ---
 
