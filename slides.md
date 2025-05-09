@@ -282,7 +282,6 @@ fetch("https://reqres.in/api/users/2")
 ```
 ---
 
-
 # Steps to Make an API Call
 
 1. Identify the API endpoint
@@ -311,7 +310,7 @@ fetch("https://reqres.in/api/users/2")
   ```
 ---
 
-## API Calls Methods
+## API Call Methods
 There are 4 main methods used in making API calls in JavaScript.
 Using restaurant orders as  case point here:
 
@@ -328,7 +327,6 @@ fetch("https://reqres.in/api/users/2")
   .catch(error => console.error("Error fetching user:", error));
 ```
 ---
-
 
 ### POST
 Sends data to a server to create new information.
@@ -351,7 +349,6 @@ fetch("https://reqres.in/api/users", {
 ### PUT/PATCH
 Updates existing data on a server
 
-
 - We can decide to  change our order: If we update our meal selection, the app sends a PUT request to modify our order.
 (PUT replaces existing data while PATCH updates a part of it)
 ```js
@@ -367,7 +364,6 @@ fetch("https://reqres.in/api/users/2", {
     .then (data => console.log("User Created: ", data))
     .catch (error => console.error("Error creating user:", error))
 ```
-
 
 ---
 
@@ -406,27 +402,26 @@ One way of doing this is using the try…catch method.
 
 ---
 
-
 ### try...catch
 There are 4 main parts when handling errors using the try…catch method
 
 
-* try
+* try:
 The try implies that a code should try running even though there are errors.
 Without it, JS stops the entire process and throws and error in the console.
 
 
-* catch
+* catch:
 The catch part of the statement, sees the error and catches it.
 Without it, the entire program breaks.
 
 
-* console.log
+* console.log:
 This logs in the error with the details of the error.
 Without it, we won’t see any useful information about what went wrong which makes debugging difficult.
 
 
-* finally
+* finally:
 This is the last part that will always run no matter the error.
 It is used to log a completion message after debugging.
 
