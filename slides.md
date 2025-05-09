@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/ac79a489-be1b-4234-86ba-75e5d4d94dff)---
+---
 # You can also start simply with 'default'
 theme: seriph
 # random image from a curated Unsplash collection by Anthony
@@ -128,22 +128,23 @@ A **Callback function** is a function passed into another function as an argumen
 
 Callbacks pay a big factor in asynchronous functions, where one function has to wait for another function (like waiting for a file to load), it makes functions more reusable too. Callbacks allows you to reuse functions in flexible way.
 
-```js 
- function display(value){
-    console.log(value)
- }
+```js
+function display(value) {
+  console.log(value);
+}
 
- function calTwoNum(num1, num2, callBack){
-   let sum = num1 + num2
-   callBack(sum)
- }
+function calTwoNum(num1, num2, callBack) {
+  let sum = num1 + num2;
+  callBack(sum);
+}
 
- calTwoNum(10,8, display); //Output; 18.
+calTwoNum(10, 8, display); //Output; 18.
 ```
 
 Here, display is passed as a callback to show output after calculating.
 
 ---
+
 # Promises
 
 ## WHAT IS A PROMISE?
@@ -157,13 +158,15 @@ In a case where several callbacks would be needed, callbacks would eventually be
 ---
 
 ## POSSIBLE PROMISE STATES
+
 Promises can be in three states:
+
 - Pending: this is the initial state, the asynchronous operation has not completed yet. Like waiting for a friend to call you back.
 - Resolved: the asynchronous operation completed successfully and thus the promise has a resulting value. Your friend called back and gave you an answer.
 - Rejected: the asynchronous operation failed. Your friend never called you back.
 
-  ---
-  
+  ***
+
 ## PROMISE EXAMPLE AND FORMAT
 
 ```
@@ -180,16 +183,15 @@ reject("Something went wrong"); }
 
 myPromise
 .then(result => console.log(result))     // If resolved
- .catch(error => console.error(error));   // If rejected 
+ .catch(error => console.error(error));   // If rejected
 ```
 
 - To invoke a promise the `new Promise` key word is used. It takes two parameters; `resolve` and `reject'. The resolve holds if the callback is successful and reject holds if it is not i.e there is an errror.
 
-- The `.then' is used to handle successes. Each `.then()` returns a new promise, so you can chain multiple `.then() calls`.
+- The `.then' is used to handle successes. Each `.then()`returns a new promise, so you can chain multiple`.then() calls`.
 - The `.catch()` handles errors. It catches errors that occur in the promise chain before it.
 
-  ---
-
+  ***
 
 # JavaScript Bundlers 101
 
@@ -359,23 +361,25 @@ Happy bundling! 🎉
 
 # Async & Await in JavaScript
 
- Introduction to async & await
+Introduction to async & await
 
 ---
 
 # What are async and await?
+
 They are tools to handle asynchronous code in JavaScript in a clean, readable way — instead of using callbacks or .then() chains with Promises.
 
 Think of async/await as a way to write asynchronous code that looks like synchronous code.
 
 # Key Concepts
+
 async makes a function return a Promise.
 
 await pauses the execution of the async function until the Promise resolves.
 
 ---
 
-##  What is Asynchronous Code?
+## What is Asynchronous Code?
 
 JavaScript is **single-threaded** — it can only do one thing at a time.
 
@@ -383,13 +387,13 @@ But with **asynchronous code**, JS can:
 
 - Start a long-running task (e.g. API call)
 - Continue with other code
-- Come back when the task is finished 
+- Come back when the task is finished
 
 This prevents the app from **freezing** while waiting.
 
 ---
 
-##  Why Use `async` and `await`?
+## Why Use `async` and `await`?
 
 ✅ Makes asynchronous code look like normal synchronous code  
 ✅ Easier to read, write, and debug than `.then()` chains  
@@ -397,7 +401,7 @@ This prevents the app from **freezing** while waiting.
 
 ---
 
-##  What is `async`?
+## What is `async`?
 
 Adding `async` before a function:
 
@@ -422,13 +426,13 @@ greet().then(console.log); // Logs: Hello!
 
 ---
 
-##  What is `await`?
+## What is `await`?
 
 You use `await` **inside an async function** to pause execution until a Promise resolves:
 
 ```js
 function wait(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 async function showMessage() {
@@ -442,12 +446,12 @@ showMessage();
 
 ---
 
-##  Error Handling with try/catch
+## Error Handling with try/catch
 
 ```js
 async function getUserData() {
   try {
-    const res = await fetch('https://jsonplaceholder.typicode.com/users/1');
+    const res = await fetch("https://jsonplaceholder.typicode.com/users/1");
     const user = await res.json();
     console.log(user);
   } catch (err) {
@@ -473,12 +477,12 @@ If an error happens in any await line, the code jumps to the catch block.
 
 ---
 
-##  Sequential vs Parallel `await`s
+## Sequential vs Parallel `await`s
 
 ### Sequential (steps depend on each other):
 
 ```js
-const userRes = await fetch('/user');
+const userRes = await fetch("/user");
 const user = await userRes.json();
 const postsRes = await fetch(`/posts?userId=${user.id}`);
 ```
@@ -487,14 +491,14 @@ const postsRes = await fetch(`/posts?userId=${user.id}`);
 
 ```js
 const [usersRes, postsRes] = await Promise.all([
-  fetch('/users'),
-  fetch('/posts')
+  fetch("/users"),
+  fetch("/posts"),
 ]);
 ```
 
 ---
 
-##  Summary
+## Summary
 
 | Feature       | Description                           |
 | ------------- | ------------------------------------- |
@@ -505,7 +509,6 @@ const [usersRes, postsRes] = await Promise.all([
 
 ---
 
-##  Thanks for Listening!
+## Thanks for Listening!
 
 Got questions? Let’s discuss! 🙋‍♂️
-
