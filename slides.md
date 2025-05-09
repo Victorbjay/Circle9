@@ -144,6 +144,52 @@ greet("Alice", sayBye);
 Here, sayBye is passed as a callback to greet
 
 ---
+# DOM
+
+**DOM** (document object module) is the interface that allows javascript to interact with HTML and CSS.
+**DOM** manipulation is the process of changing the structure or content of a web page using javascript or any programming language.
+
+---
+# Dom Manipulation
+
+## Searching the DOM 
+Using query selector is a common practice in web development.It allows us find an element using it's CSS selector(class or id)
+
+```js
+let element = document.querySelector('.people');
+// here, we are finding an element with the class name people and assigning it to a variable
+```
+other ways to search the DOM are getElementById, getElementByClassName, querySelectorAll
+
+
+## Changing the DOM
+
+### Adding Content
+This allows you set the HTML content within an element using innerHTML
+
+```js
+let element = document.querySelector('.myElement');
+element.innerHTML = '<p>This is an element</p>';
+```
+
+### Adding Elements
+You can create new elemnts using document.create and add to the DOM using append,appendChild,insertBefore 
+
+```js
+let element = document.querySelector('.myElement');
+let newElement = document.createElement('div');
+newElement.textContent = 'This is a new element';
+element.appendChild(newElement);
+```
+
+### Removing Elements 
+You can remove elements using element.remove()
+
+### Updating Texts
+You can update text of an element using the textContent property
+
+
+---
 
 # JavaScript Bundlers 101
 
