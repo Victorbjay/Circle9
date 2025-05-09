@@ -1,312 +1,420 @@
 ---
-# You can also start simply with 'default'
-theme: seriph
-# random image from a curated Unsplash collection by Anthony
-# like them? see https://unsplash.com/collections/94734566/slidev
-background: https://cover.sli.dev
-# some information about your slides (markdown enabled)
-title: Welcome to Slidev
+# theme: default
+# https://sli.dev/custom/highlighters.html
+highlighter: shiki
+# show line numbers in code blocks
+lineNumbers: true
+# some information about the slides, markdown enabled
 info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
-
-  Learn more at [Sli.dev](https://sli.dev)
-# apply unocss classes to the current slide
-class: text-center
-# https://sli.dev/features/drawing
+  ## JavaScript Modules Presentation
+  A comprehensive guide to JavaScript modules, imports, and exports.
+# persist drawings in exports and build
 drawings:
   persist: false
-# slide transition: https://sli.dev/guide/animations.html#slide-transitions
+# page transition
 transition: slide-left
-# enable MDC Syntax: https://sli.dev/features/mdc
-mdc: true
-# open graph
-# seoMeta:
-#  ogImage: https://cover.sli.dev
+# use UnoCSS
+css: unocss
 ---
 
-# JavaScript Summary from Circle 9
+# JavaScript Modules
 
-_A Tinyuka Production_<br>
-Presentation slides by:
-<br>
+Understanding imports and exports in modern JavaScript
 
-<div @click="$slidev.nav.next" class="mt-12 py-1" hover:bg="white op-10">
-    Press Space for next page <carbon:arrow-right />
-  </div>
+<div class="pt-12">
+  <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
+    Press Space for next page <carbon:arrow-right class="inline"/>
+  </span>
+</div>
+
+<div class="abs-br m-6 flex gap-2">
+  <a href="https://github.com/slidevjs/slidev" target="_blank" alt="GitHub"
+    class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
+    <carbon-logo-github />
+  </a>
+</div>
 
 <!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
+This is the title slide for our JavaScript Modules presentation.
+
+Key points to mention in the introduction:
+- JavaScript modules help organize code into reusable pieces
+- ES Modules (ESM) is the standard format since ES2015
+- We'll cover both basic and advanced module patterns
 -->
 
 ---
 
-# Team Players
+# Introduction to Modules
 
-- Paul
-- Wafaqah
-- Tolu
-- Victor
-- Kaycee
-- Gbolahan
-- Iyin
-- Victoria
-- Ibrahim
+<v-clicks>
 
----
+- Modules help organize code into separate files
+- ES Modules (ESM) is the official standard format (since ES2015)
+- Files with import/export statements are treated as modules
+- Modules have their own scope (not global)
+- Modules are executed only once, even when imported multiple times
 
-# Table of Content
-
-<Toc text-sm minDepth="1" maxDepth="2" />
+</v-clicks>
 
 ---
 
-# JavaScript Functions
+Additional notes:
 
-Function is a block of reusable code that can perform a particular task, it can take in parameters and it's value(argument) also return a value, arrays and objects.
+<v-clicks>
 
-Below are codes examples of how functions are used to perform tasks:
+- Before modules, developers used patterns like IIFEs and the revealing module pattern
+- CommonJS is another module format used primarily in Node.js
+- ES Modules work in both browsers and Node.js
+- Modules help prevent naming conflicts and global scope pollution
 
-```js {monaco-run}
-function greetUser() {
-  alert("you are welcome");
-}
-
-greetUser();
-```
+</v-clicks>
 
 ---
 
-## Ways of declaring a function
+# Default Exports & Imports
 
-## 1. Function Declaration:
+Default exports are useful when a module primarily provides one main piece of functionality.
+The name used when importing can be different from the name used when exporting.
 
-It is the widely and default way of declaring a function and the exciting thing here is that it can be called before defining it.
-
-```js {monaco-run}
-//Remember: The 'name' is a parameter and it accepts a value called argument.
-greet("chioma");
-
-function greet(name) {
-  console.log(`Welcome back ${name}!!`);
-}
-//Output; Welcome back Chioma!!
-```
-
----
-
-## 2. Functions Expression:
-
-It is defined as a value and assigned to a variable, it can not be called before defining it.
+## Default Export
 
 ```js
-let greet = function (name) {
-  console.log(`Welcome back ${name}!!`);
-};
-
-greet("chioma"); //Output; Welcome back Chioma!!
-```
-
-## 3. Arrow Function:
-
-This was introduced in ES6 and it can be defined without the function keyword and also assigned to a variable and the essential thing is
-that the parameters and function body is seperated by "=>". it is very easy, short and handy to code with😊
-
-```js {monaco-run}
-let greet = (name) => {
-  console.log(`Welcome back ${name}!!`);
-};
-
-greet("chioma"); //Output; Welcome back Chioma!!
-```
-
----
-
-## Callbacks
-
-A **Callback function** is a function passed into another function as an argument, which is then invoked inside the outer function to complete some kind of action.
-
-The execution may be immediate as in synchronous callback and it might happen later as in asynchronous callback. Callbacks allows you to reuse functions in flexible way.
-
-```js {monaco-run}
-function greet(name, callback) {
-  console.log("Hi " + name);
-  callback(); // calling the callback function
+// math.js
+export default function add(a, b) {
+return a + b;
 }
 
-function sayBye() {
-  console.log("Bye!");
+// Alternative syntax
+function multiply(a, b) {
+return a \* b;
 }
 
-greet("Alice", sayBye);
+export default multiply;
 ```
 
-Here, sayBye is passed as a callback to greet
+<p class="text-sm opacity-75">Only one default export per module</p>
 
 ---
 
-# JavaScript Bundlers 101
+## Default Import
 
-## What is a Bundler?
+```js
+// app.js
+import add from "./math.js";
 
-A **JavaScript bundler** takes many files and dependencies and combines them into one or a few optimized files that the browser can load efficiently.
+console.log(add(2, 3)); // 5
 
-## Why Use a Bundler?
+// You can use any name when importing
+import mathFunction from "./math.js";
 
-- Fewer HTTP requests
-- Easier code organization with modules
-- Enables modern features like ES Modules, TypeScript, JSX
-- Minifies and optimizes your code for production
+console.log(mathFunction(2, 3)); // 5
+```
+
+<p class="text-sm opacity-75">Import name can be different from export name</p>
 
 ---
 
-## ES Modules vs CommonJS
+# Named Exports & Imports
 
-### ES Module
+Named exports are ideal when a module provides multiple related functions, variables, or classes.
+When importing, you must use the exact same names as the exports, unless you use aliases.
+Named exports make it clear what functionality is being imported.
 
-```js {monaco-run}
+#### Named Exports
+
+```js
 // utils.js
-export function greet(name) {
-  return `Hello, ${name}`;
+export function add(a, b) {
+return a + b;
 }
 
-// main.js
-import { greet } from "./utils.js";
-console.log(greet("Alice"));
+export function subtract(a, b) {
+return a - b;
+}
+
+export const PI = 3.14159;
+
+// Alternative syntax
+const multiply = (a, b) => a \* b;
+const divide = (a, b) => a / b;
+
+export { multiply, divide };
+
 ```
 
-### CommonJS
+---
 
-```js {monaco-run}
+## Named Imports
+
+```js
+// app.js
+import { add, subtract, PI } from "./utils.js";
+
+console.log(add(5, 3)); // 8
+console.log(subtract(5, 3)); // 2
+console.log(PI); // 3.14159
+
+// Import with alias
+import { add as sum, PI as pi } from "./utils.js";
+
+console.log(sum(5, 3)); // 8
+console.log(pi); // 3.14159
+```
+
+<p class="text-sm opacity-75">Names must match exports (unless aliased)</p>
+
+---
+
+# Mixing Default & Named Exports
+
+You can combine default and named exports in a single module.
+When importing both the default and named exports, the default import comes first.
+
+## Mixed Exports
+
+```js
+// calculator.js
+export default class Calculator {
+add(a, b) {
+return a + b;
+}
+
+subtract(a, b) {
+return a - b;
+}
+}
+
+export const PI = 3.14159;
+export const E = 2.71828;
+
+export function square(x) {
+return x \* x;
+}
+```
+
+---
+
+## Mixed Imports
+
+```js
+// app.js
+import Calculator, { PI, square } from "./calculator.js";
+
+const calc = new Calculator();
+console.log(calc.add(5, 3)); // 8
+console.log(PI); // 3.14159
+console.log(square(4)); // 16
+
+// Alternative syntax
+import Calculator from "./calculator.js";
+import { PI, square } from "./calculator.js";
+```
+
+<p class="text-sm opacity-75">Default import comes before named imports</p>
+
+---
+
+# Namespace Imports
+
+Import all exports from a module as properties of an object:
+
+```js
 // utils.js
-function greet(name) {
-  return `Hello, ${name}`;
+export function add(a, b) { return a + b; }
+export function subtract(a, b) { return a - b; }
+export const PI = 3.14159;
+export default function multiply(a, b) { return a \* b; }
+
+// app.js
+import \* as Utils from './utils.js';
+
+console.log(Utils.add(5, 3)); // 8
+console.log(Utils.subtract(5, 3)); // 2
+console.log(Utils.PI); // 3.14159
+
+// Note: Default export is available as 'default' property
+console.log(Utils.default(5, 3)); // 15
+```
+
+<div class="bg-yellow-100 p-4 rounded-lg mt-4 text-yellow-800">
+  <h3 class="font-bold">Important Note</h3>
+  <p>
+    When using namespace imports, the default export is available as the <code>default</code> property on the imported object.
+  </p>
+</div>
+
+<!--
+Namespace imports are useful when you want to import many exports from a module.
+They help avoid cluttering your import statements with many named imports.
+However, they can make it less clear which specific parts of a module are being used.
+The default export is accessible via the 'default' property, which is often overlooked.
+-->
+
+---
+
+# Re-exporting
+
+Re-export allows you to export items that were imported from other modules:
+
+```js
+// math.js
+export const add = (a, b) => a + b;
+export const subtract = (a, b) => a - b;
+
+// utils.js
+export const formatNumber = (num) => num.toFixed(2);
+export const randomInt = (min, max) => Math.floor(Math.random() \* (max - min + 1)) + min;
+
+// index.js - Re-export everything
+export _ from './math.js';
+export _ from './utils.js';
+
+// api.js - Re-export selectively
+export { add, subtract } from './math.js';
+export { formatNumber as format } from './utils.js';
+
+// Re-export default
+export { default } from './some-module.js';
+export { default as MyClass } from './some-module.js';
+```
+
+<p class="opacity-75">Useful for creating a public API for your library or organizing large projects</p>
+
+<!--
+Re-exporting is a powerful feature for creating "barrel" files that aggregate exports from multiple modules.
+This pattern is commonly used in libraries to provide a clean public API.
+It allows you to reorganize your internal file structure without breaking external imports.
+You can also rename exports during re-export, which is useful for resolving naming conflicts.
+-->
+
+---
+
+# Dynamic Imports
+
+Load modules on demand using the dynamic `import()` function:
+
+```js
+// Static import (always loaded)
+import { add } from "./math.js";
+
+// Dynamic import (loaded on demand)
+async function loadMathModule() {
+  try {
+    // Returns a promise that resolves to the module object
+    const mathModule = await import("./math.js");
+
+    console.log(mathModule.add(5, 3)); // 8
+    console.log(mathModule.subtract(5, 3)); // 2
+
+    // Or with destructuring
+    const { multiply, divide } = await import("./advanced-math.js");
+    console.log(multiply(5, 3)); // 15
+  } catch (error) {
+    console.error("Error loading module:", error);
+  }
 }
-module.exports = { greet };
-
-// main.js
-const { greet } = require("./utils.js");
-console.log(greet("Bob"));
 ```
 
-These code snippets demonstrate a common practice in JavaScript for organizing code into separate files and using modules to share functionality.
+## Benefits:
+
+<v-clicks>
+
+- Code splitting - reduce initial load time
+- Conditional loading - load modules only when needed
+- Works in browsers and Node.js
+
+</v-clicks>
+
+<!--
+Dynamic imports are a key feature for optimizing application performance.
+They allow you to load code only when it's needed, reducing initial bundle size.
+This is especially important for web applications where load time affects user experience.
+Dynamic imports return a Promise, so they work well with async/await syntax.
+-->
 
 ---
 
-In essence:
+# Best Practices
 
-`utils.js` creates a reusable function (greet) and makes it available to other files. `main.js` then `imports` this function and uses it to print a greeting. This modular approach helps keep code organized and makes it easier to manage larger projects.
+## Do's ✓
 
-# How Bundlers Work (Simplified)
+<v-clicks>
 
-1. Start from an entry file
-2. Build a dependency graph
-3. Combine all modules
-4. Minify and optimize
-5. Output to `/dist` folder
+- Use named exports for multiple related items
+- Use default exports for main functionality
+- Keep modules focused on a single responsibility
+- Use barrel files (index.js) to simplify imports
+- Use dynamic imports for code splitting
+- Prefer constants over mutable exports
+- Document your public API exports
+- Use consistent naming conventions
 
----
-
-# Popular Bundlers
-
-- **Webpack** – Powerful, customizable, but complex
-- **Parcel** – Zero config, beginner friendly
-- **Vite** – Lightning fast, ESM-based dev server
-- **esbuild** – Super fast, minimal setup
+</v-clicks>
 
 ---
 
-# Webpack Example
+## Don'ts ✗
 
-```js {monaco-run}
-// webpack.config.js
-module.exports = {
-  entry: "./src/index.js", // where your app starts
-  output: {
-    filename: "bundle.js", // the output bundle file name
-    path: __dirname + "/dist", // the output folder (absolute path)
-  },
-  mode: "development", // or 'production'
-};
-```
+<v-clicks>
 
-_This is a basic Webpack configuration file_.
+- Mix CommonJS and ES Modules in the same file
+- Create circular dependencies between modules
+- Export mutable variables
+- Create modules with side effects
+- Use namespace imports for everything
+- Export too many things from a single module
+- Use default exports for everything
+- Rely on file extensions in import paths
 
----
-
-# Parcel Example
-
-### File: src/utils.js
-
-```js {monaco-run}
-export function capitalize(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-```
-
-### File: src/greet.js
-
-```js {monaco-run}
-import { capitalize } from "./utils.js";
-export function greet(name) {
-  return `Hello, ${capitalize(name)}!`;
-}
-```
-
-### File: src/index.js
-
-```js {monaco-run}
-import { greet } from "./greet.js";
-console.log(greet("world"));
-```
+</v-clicks>
 
 ---
 
-## HTML Entry (index.html)
+# Module Resolution
 
-```html {monaco-run}
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Parcel App</title>
-  </head>
-  <body>
-    <script src="./dist/bundle.js" defer></script>
-  </body>
-</html>
+## Node.js Resolution
+
+```js
+import { foo } from "module-name";
 ```
+
+<v-clicks>
+
+- Look in `node_modules/module-name`
+- Check package.json's `main` field
+- Look for index.js if no main
+- Check parent directories
+
+</v-clicks>
 
 ---
 
-## Parcel Commands
+# Summary
 
-```bash
-npm install --save-dev parcel
-npx parcel index.html
-```
+This presentation covered the fundamentals of JavaScript modules, from basic syntax to advanced patterns.
+Understanding modules is essential for writing maintainable JavaScript applications.
+The module system continues to evolve, with new features being added to the language
 
-## Vite Quick Start
+<v-clicks>
 
-```bash
-npm create vite@latest my-app
-cd my-app
-npm install
-npm run dev
-```
+- ES Modules are the standard way to organize JavaScript code
+- Default exports are useful for a module's main functionality
+- Named exports are ideal for exporting multiple related items
+- Dynamic imports enable code splitting and conditional loading
+- TypeScript extends module syntax with type-specific features
+- Following best practices leads to maintainable, efficient code
 
-## esbuild Quick Start
+</v-clicks>
 
-```bash
-npm install --save-dev esbuild
-npx esbuild src/index.js --bundle --minify --outfile=dist/bundle.js
-```
+<div class="pt-12">
+  <span class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
+    Thank you!
+  </span>
+</div>
 
 ---
 
-## Summary
+# Learn More
 
-- Use Parcel or Vite for easy, fast setups
-- Use Webpack if you need advanced configuration
-- Use esbuild for raw speed and simplicity
-
-Happy bundling! 🎉
+[Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) · [GitHub](https://github.com/tc39/proposal-modules) · [Examples](https://github.com/mdn/js-examples/tree/master/modules)
