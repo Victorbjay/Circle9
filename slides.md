@@ -266,6 +266,236 @@ myPromise
 
   ***
 
+---
+## API Calls
+
+API’s (Application Programming Interface) allows communications between softwares.
+In modern/recent times, this is done using the fetch method.
+The fetch method helps us send and receive data from a server.
+
+Here's an example of a simple fetch request in JavaScript:
+```js
+fetch("https://reqres.in/api/users/2")
+  .then(response => response.json())
+  .then(data => console.log("User Data:", data))
+  .catch(error => console.error("Error fetching user:", error));
+```
+---
+
+
+# Steps to Make an API Call
+
+1. Identify the API endpoint
+  * An API endpoint is the URL where our request is sent.
+  * It defines what data we're fetching, posting, or updating.
+2. Use the fetch method  
+  * The fetch() function is used in JavaScript to send HTTP requests.
+  * It helps us retrieve data from an API or send new data to a server.
+  ```js
+  fetch('https://api.example.com/users')
+  .then(response => response.json())
+  .then(data => console.log(data));
+  ```
+3. Handle the response data
+  * APIs return data, usually in JSON format.
+  * We must extract and use this data within our application.
+  ```js
+  .then(response => response.json())
+  .then(data => console.log("User info:", data));
+  ```
+4. Manage errors properly  
+  * Sometimes, API calls fail due to bad requests or server issues.
+  * Error handling ensures our app doesn't break when that happens.
+  ```js
+  .catch(error => console.error("Error fetching data:", error));
+  ```
+---
+
+## API Calls Methods
+There are 4 main methods used in making API calls in JavaScript.
+Using restaurant orders as  case point here:
+
+### GET
+Retrieves existing data from a server or site.
+
+For example:
+- We can search for restaurants. When we use the search bar, the app makes a GET request to fetch restaurant listings.
+
+```js
+fetch("https://reqres.in/api/users/2")
+  .then(response => response.json())
+  .then(data => console.log("User Data:", data))
+  .catch(error => console.error("Error fetching user:", error));
+```
+---
+
+
+### POST
+Sends data to a server to create new information.
+
+- We can place an order: The app sends a POST request to the restaurant’s API with our order details
+```js
+fetch("https://reqres.in/api/users", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+        "x-api-key": "reqres-free-v1"
+    },
+    body: JSON.stringify({ name: "Victoria", job: "Developer"})
+})
+    .then (response => response.json())
+    .then (data => console.log("User Created: ", data))
+    .catch (error => console.error("Error creating user:", error))
+```
+---
+### PUT/PATCH
+Updates existing data on a server
+
+
+- We can decide to  change our order: If we update our meal selection, the app sends a PUT request to modify our order.
+(PUT replaces existing data while PATCH updates a part of it)
+```js
+fetch("https://reqres.in/api/users/2", {
+    method: "PUT",
+    headers: {
+        "Content-Type": "application/json",
+        "x-api-key": "reqres-free-v1"
+    },
+    body: JSON.stringify({ name: "Victoria", job: "Junior Developer"})
+})
+    .then (response => response.json())
+    .then (data => console.log("User Created: ", data))
+    .catch (error => console.error("Error creating user:", error))
+```
+
+
+---
+
+### DELETE
+This removes existing data from the system.
+
+
+- We cancel our order → The app sends a DELETE request to remove our order from the system.
+
+
+```js
+fetch("https://reqres.in/api/users/2", {
+    method: "DELETE",
+    headers: {
+        "Content-Type": "application/json",
+        "x-api-key": "reqres-free-v1"
+    },
+})
+    .then(response => {
+        if (response.ok) console.log("User deleted successfully.");
+        else throw new Error(`Error: ${response.status} - ${response.statusText}`);
+    })
+    .catch(error => console.error("DELETE Request Failed:", error));
+```
+
+---
+
+## ERROR HANDLING
+Error handling in Javascript is a way of controlling errors or bugs that might happen and stops is from breaking out of the script.
+
+
+For example: if you were watching a TV and something happens to the network, error handling can prompts the TV to say “Slow Network” or “Network Disconnected” instead shutting down the TV.
+
+
+One way of doing this is using the try…catch method.
+
+---
+
+
+### try...catch
+There are 4 main parts when handling errors using the try…catch method
+
+
+* try
+The try implies that a code should try running even though there are errors.
+Without it, JS stops the entire process and throws and error in the console.
+
+
+* catch
+The catch part of the statement, sees the error and catches it.
+Without it, the entire program breaks.
+
+
+* console.log
+This logs in the error with the details of the error.
+Without it, we won’t see any useful information about what went wrong which makes debugging difficult.
+
+
+* finally
+This is the last part that will always run no matter the error.
+It is used to log a completion message after debugging.
+
+---
+
+### Example
+```js
+try {
+    let userAge = prompt("Enter a number")
+    let number = parseInt(userAge)
+
+
+    if (isNaN(number)) {
+        throw new Error ("Invalid input! Please enter a number")
+    }
+    console.log(`You entered: ${number}`)
+} catch (error) {
+    console.log(`Error caught: ${error.message}`)
+} finally {
+    console.log("Execution finished!")
+}
+```
+
+---
+
+## Custom Error Handling
+A custom error in JavaScript allows us create specific error types tailored to unique situations instead of relying on generic JavaScript errors.
+
+
+For example:
+If we have a system where users enter their age, and we want to prevent unrealistic entries (like negative numbers or extremely high numbers). We can create a custom error class to handle this situation.
+
+
+It is important because:
+* It helps identify exactly where and why an error occurred.
+* Instead of a vague error, users and developers see a specific message related to the issue.
+
+
+---
+### Example
+```js
+// define the error type
+class AgeError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "AgeError";
+    }
+}
+// we set a condition to ensure the error message is triggered when a user inputs what we don't want
+function checkUserAge(age) {
+    if (age < 0 || age > 120) {
+        throw new AgeError("Invalid age! Please enter a realistic age.");
+    }
+    console.log(`Valid age entered: ${age}`);
+}
+
+
+// we see the error type we have assigned. This will trigger our custom AgeError
+try {
+    checkUserAge(500);
+} catch (error) {
+    console.log(`Error caught: ${error.name} - ${error.message}`);
+```
+---
+
+
+# Thank You
+
+
 # JavaScript Bundlers 101
 
 ## What is a Bundler?
