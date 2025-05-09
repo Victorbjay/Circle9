@@ -283,6 +283,7 @@ fetch("https://jsonplaceholder.typicode.com/users/1")
     console.log(`City: ${user.address.city}`);
   })
   .catch(error => console.error("Error fetching user data:", error));
+```
 ---
 
 # Steps to Make an API Call
