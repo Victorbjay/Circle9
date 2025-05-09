@@ -166,6 +166,59 @@ calTwoNum(10, 8, display); //Output; 18.
 Here, display is passed as a callback to show output after calculating.
 
 ---
+
+# DOM
+
+**DOM** (document object module) is the interface that allows javascript to interact with HTML and CSS.
+**DOM** manipulation is the process of changing the structure or content of a web page using javascript or any programming language.
+
+---
+
+# Dom Manipulation
+
+## Searching the DOM
+
+Using query selector is a common practice in web development.It allows us find an element using it's CSS selector(class or id)
+
+```js
+let element = document.querySelector(".people");
+// here, we are finding an element with the class name people and assigning it to a variable
+```
+
+other ways to search the DOM are getElementById, getElementByClassName, querySelectorAll
+
+## Changing the DOM
+
+### Adding Content
+
+This allows you set the HTML content within an element using innerHTML
+
+```js
+let element = document.querySelector(".myElement");
+element.innerHTML = "<p>This is an element</p>";
+```
+
+### Adding Elements
+
+You can create new elemnts using document.create and add to the DOM using append,appendChild,insertBefore
+
+```js
+let element = document.querySelector(".myElement");
+let newElement = document.createElement("div");
+newElement.textContent = "This is a new element";
+element.appendChild(newElement);
+```
+
+### Removing Elements
+
+You can remove elements using element.remove()
+
+### Updating Texts
+
+You can update text of an element using the textContent property
+
+---
+
 # Promises
 
 **WHAT IS A PROMISE?**
@@ -186,8 +239,8 @@ Promises can be in three states:
 - Resolved: the asynchronous operation completed successfully and thus the promise has a resulting value. Your friend called back and gave you an answer.
 - Rejected: the asynchronous operation failed. Your friend never called you back.
 
-  ---
-  
+  ***
+
 ## PROMISE EXAMPLE AND FORMAT
 
 ```js {monaco-run}
@@ -202,17 +255,16 @@ const myPromise = new Promise((resolve, reject) => {
 });
 
 myPromise
-.then(result => console.log(result))     // If resolved
- .catch(error => console.error(error));   // If rejected 
+  .then((result) => console.log(result)) // If resolved
+  .catch((error) => console.error(error)); // If rejected
 ```
 
 - To invoke a promise the `new Promise` key word is used. It takes two parameters; `resolve` and `reject'. The resolve holds if the callback is successful and reject holds if it is not i.e there is an errror.
 
-- The `.then' is used to handle successes. Each `.then()` returns a new promise, so you can chain multiple `.then() calls`.
+- The `.then' is used to handle successes. Each `.then()`returns a new promise, so you can chain multiple`.then() calls`.
 - The `.catch()` handles errors. It catches errors that occur in the promise chain before it.
 
-  ---
-
+  ***
 
 # JavaScript Bundlers 101
 
