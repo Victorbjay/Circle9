@@ -310,3 +310,156 @@ npx esbuild src/index.js --bundle --minify --outfile=dist/bundle.js
 - Use esbuild for raw speed and simplicity
 
 Happy bundling! 🎉
+
+# Async & Await in JavaScript
+
+ Introduction to async & await
+
+---
+
+# What are async and await?
+They are tools to handle asynchronous code in JavaScript in a clean, readable way — instead of using callbacks or .then() chains with Promises.
+
+Think of async/await as a way to write asynchronous code that looks like synchronous code.
+
+# Key Concepts
+async makes a function return a Promise.
+
+await pauses the execution of the async function until the Promise resolves.
+
+---
+
+##  What is Asynchronous Code?
+
+JavaScript is **single-threaded** — it can only do one thing at a time.
+
+But with **asynchronous code**, JS can:
+
+- Start a long-running task (e.g. API call)
+- Continue with other code
+- Come back when the task is finished 
+
+This prevents the app from **freezing** while waiting.
+
+---
+
+##  Why Use `async` and `await`?
+
+✅ Makes asynchronous code look like normal synchronous code  
+✅ Easier to read, write, and debug than `.then()` chains  
+✅ Simplified error handling using `try/catch`
+
+---
+
+##  What is `async`?
+
+Adding `async` before a function:
+
+- Automatically makes it return a **Promise**
+
+```js
+async function greet() {
+  return "Hello!";
+}
+
+// Equivalent to:
+function greet() {
+  return Promise.resolve("Hello!");
+}
+```
+
+Usage:
+
+```js
+greet().then(console.log); // Logs: Hello!
+```
+
+---
+
+##  What is `await`?
+
+You use `await` **inside an async function** to pause execution until a Promise resolves:
+
+```js
+function wait(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function showMessage() {
+  console.log("Waiting...");
+  await wait(2000); // Wait 2 seconds
+  console.log("Done waiting!");
+}
+
+showMessage();
+```
+
+---
+
+##  Error Handling with try/catch
+
+```js
+async function getUserData() {
+  try {
+    const res = await fetch('https://jsonplaceholder.typicode.com/users/1');
+    const user = await res.json();
+    console.log(user);
+  } catch (err) {
+    console.error("Something went wrong:", err);
+  }
+}
+
+getUserData();
+```
+
+async function getUserData() — this is an asynchronous function.
+
+fetch(...) — sends a network request to get user data (from a public API).
+
+await res.json() — parses the response body as JSON.
+
+All this is wrapped in a try { ... } catch { ... } block to catch errors like:
+No internet,
+Bad API URL,
+JSON parsing issues etc
+
+If an error happens in any await line, the code jumps to the catch block.
+
+---
+
+##  Sequential vs Parallel `await`s
+
+### Sequential (steps depend on each other):
+
+```js
+const userRes = await fetch('/user');
+const user = await userRes.json();
+const postsRes = await fetch(`/posts?userId=${user.id}`);
+```
+
+### Parallel (independent steps):
+
+```js
+const [usersRes, postsRes] = await Promise.all([
+  fetch('/users'),
+  fetch('/posts')
+]);
+```
+
+---
+
+##  Summary
+
+| Feature       | Description                           |
+| ------------- | ------------------------------------- |
+| `async`       | Makes a function return a Promise     |
+| `await`       | Waits for the Promise to resolve      |
+| `try/catch`   | Handles async errors cleanly          |
+| `Promise.all` | Runs multiple async tasks in parallel |
+
+---
+
+##  Thanks for Listening!
+
+Got questions? Let’s discuss! 🙋‍♂️
+
