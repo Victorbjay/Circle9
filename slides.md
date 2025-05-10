@@ -30,15 +30,15 @@ Presentation slides by:
 
 ## Team Players
 
-- Paul
-- Wafaqah
-- Tolu
-- Victor
-- Kaycee
-- Gbolahan
-- Iyin
-- Victoria
-- Ibrahim
+- Abujai Paul
+- Mobolaji Taofeeqoh
+- Toluwalope Akinkummi
+- Victor Emeka Okpe
+- Kenechukwu Onyia(Kaycee)
+- Adeniyi Gbolahan
+- Malomo Iyin-Oluwa
+- Ezeonugo Victoria
+- Ibrahim Sunmonu
 
 ---
 
@@ -177,6 +177,92 @@ element.appendChild(newElement);
 You can remove elements using `element.remove()`
 
 You can update text of an element using the `textContent` property
+
+---
+
+# EventListener
+
+An EventListener is a function in programming (commonly in JavaScript) that waits for a specific event (like a click, key press, or mouse movement) to happen on an element—and then runs some code when it does.
+
+🧠 Think of it like this:
+
+_You're telling the browser:_
+"Hey, when the user does this, run that."`
+
+### For example
+
+```ts {monaco}
+// Click Event
+document.getElementById("myButton").addEventListener("click", function () {
+  alert("You clicked the button!");
+});
+
+// Mouseover Event
+document.getElementById("nameInput").addEventListener("mouseover", function () {
+  console.log("Mouse is over the input!");
+});
+```
+
+---
+
+## Bubbling and Capturing
+
+#### Capturing and bubbling are two phases of how events propagate through the Document Object Model (DOM) in JavaScript when you interact with elements (like clicking, typing, etc.).
+
+---
+
+#### 📌 JavaScript Event Capturing
+
+```ts {monaco run}
+const first = document.querySelector(".firstdiv");
+const second = document.querySelector(".seconddiv");
+const third = document.querySelector(".thirddiv");
+
+// Event Capturing: triggers from outermost to innermost
+firstDiv.addEventListener(
+  "click",
+  () => {
+    console.log("firstDiv clicked in capturing phase");
+  },
+  { capture: true }
+);
+secondDiv.addEventListener(
+  "click",
+  () => {
+    console.log("secondDiv clicked in capturing phase");
+  },
+  { capture: true }
+);
+thirdDiv.addEventListener(
+  "click",
+  () => {
+    console.log("thirdDiv clicked in capturing phase");
+  },
+  { capture: true }
+);
+```
+
+---
+
+### JavaScript Event Bubbling
+
+```ts {monaco-run}
+const first = document.querySelector(".firstdiv");
+const second = document.querySelector(".seconddiv");
+const third = document.querySelector(".thirddiv");
+
+// Event Bubbling: triggers from innermost to outermost
+
+firstDiv.addEventListener("click", () => {
+  console.log("firstDiv clicked in bubbling phase");
+});
+secondDiv.addEventListener("click", () => {
+  console.log("secondDiv clicked in bubbling phase");
+});
+thirdDiv.addEventListener("click", () => {
+  console.log("thirdDiv clicked in bubbling phase");
+});
+```
 
 ---
 
@@ -1028,171 +1114,6 @@ console.log(greet("world"));
 <body>
   <script src="./dist/bundle.js" defer></script>
 </body>
-```
-
----
-
-# EventListener
-
-An EventListener is a function in programming (commonly in JavaScript) that waits for a specific event (like a click, key press, or mouse movement) to happen on an element—and then runs some code when it does.
-
-🧠 Think of it like this:
-
-_You're telling the browser:_
-"Hey, when the user does this, run that."`
-
-### For example
-
-```ts {monaco}
-// Click Event
-document.getElementById("myButton").addEventListener("click", function () {
-  alert("You clicked the button!");
-});
-
-// Mouseover Event
-document.getElementById("nameInput").addEventListener("mouseover", function () {
-  console.log("Mouse is over the input!");
-});
-```
-
----
-
-## Bubbling and Capturing
-
-#### Capturing and bubbling are two phases of how events propagate through the Document Object Model (DOM) in JavaScript when you interact with elements (like clicking, typing, etc.).
-
----
-
-#### 📌 JavaScript Event Capturing
-
-```ts {monaco run}
-const first = document.querySelector(".firstdiv");
-const second = document.querySelector(".seconddiv");
-const third = document.querySelector(".thirddiv");
-
-// Event Capturing: triggers from outermost to innermost
-firstDiv.addEventListener(
-  "click",
-  () => {
-    console.log("firstDiv clicked in capturing phase");
-  },
-  { capture: true }
-);
-secondDiv.addEventListener(
-  "click",
-  () => {
-    console.log("secondDiv clicked in capturing phase");
-  },
-  { capture: true }
-);
-thirdDiv.addEventListener(
-  "click",
-  () => {
-    console.log("thirdDiv clicked in capturing phase");
-  },
-  { capture: true }
-);
-```
-
----
-
-### JavaScript Event Bubbling
-
-```ts {monaco-run}
-const first = document.querySelector(".firstdiv");
-const second = document.querySelector(".seconddiv");
-const third = document.querySelector(".thirddiv");
-
-// Event Bubbling: triggers from innermost to outermost
-
-firstDiv.addEventListener("click", () => {
-  console.log("firstDiv clicked in bubbling phase");
-});
-secondDiv.addEventListener("click", () => {
-  console.log("secondDiv clicked in bubbling phase");
-});
-thirdDiv.addEventListener("click", () => {
-  console.log("thirdDiv clicked in bubbling phase");
-});
-```
-
----
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Common Event Listener Types</title>
-    <style>
-      table {
-        width: 80%;
-        border-collapse: collapse;
-        margin: 20px auto;
-        font-family: Arial, sans-serif;
-      }
-      th,
-      td {
-        border: 1px solid #444;
-        padding: 10px;
-        text-align: left;
-      }
-      th {
-        background-color: #ddd;
-      }
-      caption {
-        font-size: 1.5em;
-        margin-bottom: 10px;
-        font-weight: bold;
-      }
-    </style>
-  </head>
-  <body>
-    <table>
-      <caption>
-        Common JavaScript Event Listener Types
-      </caption>
-      <thead>
-        <tr>
-          <th>Event Type</th>
-          <th>Use</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>click</td>
-          <td>
-            Fires when a user clicks on an element, often used for buttons and
-            links.
-          </td>
-        </tr>
-        <tr>
-          <td>dblclick</td>
-          <td>Fires when a user double-clicks on an element.</td>
-        </tr>
-        <tr>
-          <td>mouseover</td>
-          <td>Fires when the user moves the mouse over an element.</td>
-        </tr>
-        <tr>
-          <td>mouseout</td>
-          <td>Fires when the user moves the mouse away from an element.</td>
-        </tr>
-        <tr>
-          <td>keydown</td>
-          <td>Fires when a key is pressed down.</td>
-        </tr>
-        <tr>
-          <td>keyup</td>
-          <td>Fires when a key is released.</td>
-        </tr>
-        <tr>
-          <td>submit</td>
-          <td>Fires when a form is submitted.</td>
-        </tr>
-      </tbody>
-    </table>
-  </body>
-</html>
 ```
 
 ---
