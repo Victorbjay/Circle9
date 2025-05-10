@@ -12,6 +12,8 @@ drawings:
 transition: slide-left
 mdc: true
 monaco: true
+
+  - vue
 ---
 
 # JavaScript Summary from Circle 9
