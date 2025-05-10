@@ -1149,11 +1149,14 @@ document.getElementById("nameInput").addEventListener("mouseover", function () {
 
 ---
 
+layout: center
+class: text-center
+
 ## Bubbling and Capturing
 
 #### Capturing and bubbling are two phases of how events propagate through the Document Object Model (DOM) in JavaScript when you interact with elements (like clicking, typing, etc.).
 
-<br>
+---
 
 #### 📌 JavaScript Event Capturing
 
@@ -1288,3 +1291,8 @@ thirdDiv.addEventListener("click", () => {
 ```
 
 ---
+
+layout: center
+class: text-center
+
+# THE END
