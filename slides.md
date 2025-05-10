@@ -1,29 +1,19 @@
 ---
-# You can also start simply with 'default'
 theme: seriph
-# random image from a curated Unsplash collection by Anthony
-# like them? see https://unsplash.com/collections/94734566/slidev
-background: https://cover.sli.dev
-# some information about your slides (markdown enabled)
 title: Greetings/Introduction
+background: https://cover.sli.dev
 info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
-
+  ## Slidev Starter Template  
+  Presentation slides for developers.  
   Learn more at [Sli.dev](https://sli.dev)
-# apply unocss classes to the current slide
 class: text-center
-# https://sli.dev/features/drawing
 drawings:
   persist: false
-# slide transition: https://sli.dev/guide/animations.html#slide-transitions
 transition: slide-left
-# enable MDC Syntax: https://sli.dev/features/mdc
 mdc: true
-# open graph
-# seoMeta:
-#  ogImage: https://cover.sli.dev
 monaco: true
+monacoTypesAdditionalPackages:
+  - vue
 ---
 
 # JavaScript Summary from Circle 9
@@ -137,8 +127,6 @@ function calTwoNum(num1, num2, callBack) {
 
 calTwoNum(10, 8, display); //Output; 18.
 ```
-
-Here, display is passed as a callback to show output after calculating.
 
 ---
 
@@ -277,7 +265,7 @@ Adding `async` before a function:
 
 This automatically makes it return a **Promise**
 
-```ts {monaco-run}
+```ts {monaco}
 async function greet() {
   return "Hello!";
 }
@@ -290,7 +278,7 @@ function greet() {
 
 Usage:
 
-```ts {monaco-run}
+```ts {monaco}
 greet().then(console.log); // Logs: Hello!
 ```
 
@@ -501,7 +489,7 @@ For example:
 
 - We can search for restaurants. When we use the search bar, the app makes a GET request to fetch restaurant listings.
 
-```js
+```js {monaco-run}
 fetch("https://jsonplaceholder.typicode.com/users/1")
   .then((response) => response.json()) // Convert response to JSON
   .then((user) => {
@@ -620,7 +608,7 @@ The name used when importing can be different from the name used when exporting.
 
 ## Default Export
 
-```js
+```js {monaco}
 // math.js
 export default function add(a, b) {
 return a + b;
@@ -640,7 +628,7 @@ export default multiply;
 
 ## Default Import
 
-```js
+```js {monaco}
 // app.js
 import add from "./math.js";
 
@@ -664,7 +652,7 @@ Named exports make it clear what functionality is being imported.
 
 #### Named Exports
 
-```js
+```js {monaco}
 // utils.js
 export function add(a, b) {
 return a + b;
@@ -688,7 +676,7 @@ export { multiply, divide };
 
 ## Named Imports
 
-```js
+```js {monaco}
 // app.js
 import { add, subtract, PI } from "./utils.js";
 
@@ -714,7 +702,7 @@ When importing both the default and named exports, the default import comes firs
 
 ## Mixed Exports
 
-```js
+```js {monaco}
 // calculator.js
 export default class Calculator {
 add(a, b) {
@@ -738,7 +726,7 @@ return x \* x;
 
 ## Mixed Imports
 
-```js
+```js {monaco}
 // app.js
 import Calculator, { PI, square } from "./calculator.js";
 
@@ -760,7 +748,7 @@ import { PI, square } from "./calculator.js";
 
 Import all exports from a module as properties of an object:
 
-```js
+```js {monaco}
 // utils.js
 export function add(a, b) { return a + b; }
 export function subtract(a, b) { return a - b; }
@@ -798,7 +786,7 @@ The default export is accessible via the 'default' property, which is often over
 
 Re-export allows you to export items that were imported from other modules:
 
-```js
+```js {monaco}
 // math.js
 export const add = (a, b) => a + b;
 export const subtract = (a, b) => a - b;
@@ -835,7 +823,7 @@ You can also rename exports during re-export, which is useful for resolving nami
 
 Load modules on demand using the dynamic `import()` function:
 
-```js
+```js {monaco-run}
 // Static import (always loaded)
 import { add } from "./math.js";
 
@@ -857,6 +845,8 @@ async function loadMathModule() {
 }
 ```
 
+---
+
 ## Benefits:
 
 <v-clicks>
@@ -876,7 +866,7 @@ Dynamic imports return a Promise, so they work well with async/await syntax.
 
 ---
 
-# Best Practices
+## Best Practices
 
 ## Do's ✓
 
@@ -916,7 +906,7 @@ Dynamic imports return a Promise, so they work well with async/await syntax.
 
 ## Node.js Resolution
 
-```js
+```js {monaco-run}
 import { foo } from "module-name";
 ```
 
@@ -933,7 +923,7 @@ import { foo } from "module-name";
 
 # Summary
 
-This presentation covered the fundamentals of JavaScript modules, from basic syntax to advanced patterns.
+This section covered the fundamentals of JavaScript modules, from basic syntax to advanced patterns.
 Understanding modules is essential for writing maintainable JavaScript applications.
 The module system continues to evolve, with new features being added to the language
 
@@ -947,12 +937,6 @@ The module system continues to evolve, with new features being added to the lang
 - Following best practices leads to maintainable, efficient code
 
 </v-clicks>
-
-<div class="pt-12">
-  <span class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
-    Thank you!
-  </span>
-</div>
 
 ---
 
@@ -977,43 +961,6 @@ A **JavaScript bundler** takes many files and dependencies and combines them int
 
 ---
 
-## ES Modules vs CommonJS
-
-### ES Module
-
-```ts {monaco-run}
-// utils.js
-export function greet(name) {
-  return `Hello, ${name}`;
-}
-
-// main.js
-import { greet } from "./utils.js";
-console.log(greet("Alice"));
-```
-
-### CommonJS
-
-```ts {monaco-run}
-// utils.js
-function greet(name) {
-  return `Hello, ${name}`;
-}
-module.exports = { greet };
-
-// main.js
-const { greet } = require("./utils.js");
-console.log(greet("Bob"));
-```
-
-These code snippets demonstrate a common practice in JavaScript for organizing code into separate files and using modules to share functionality.
-
----
-
-In essence:
-
-`utils.js` creates a reusable function (greet) and makes it available to other files. `main.js` then `imports` this function and uses it to print a greeting. This modular approach helps keep code organized and makes it easier to manage larger projects.
-
 ## How Bundlers Work (Simplified)
 
 1. Start from an entry file
@@ -1033,7 +980,7 @@ In essence:
 
 ## Webpack Example
 
-```ts {monaco-run}
+```ts
 // webpack.config.js
 module.exports = {
   entry: "./src/index.js", // where your app starts
@@ -1053,7 +1000,7 @@ _This is a basic Webpack configuration file_.
 
 ### File: src/utils.js
 
-```ts {monaco-run}
+```ts
 export function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
@@ -1061,7 +1008,7 @@ export function capitalize(str) {
 
 ### File: src/greet.js
 
-```ts {monaco-run}
+```ts {monaco}
 import { capitalize } from "./utils.js";
 export function greet(name) {
   return `Hello, ${capitalize(name)}!`;
@@ -1075,52 +1022,13 @@ import { greet } from "./greet.js";
 console.log(greet("world"));
 ```
 
----
-
 ## HTML Entry (index.html)
 
-```html {monaco}
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Parcel App</title>
-  </head>
-  <body>
-    <script src="./dist/bundle.js" defer></script>
-  </body>
-</html>
+```html
+<body>
+  <script src="./dist/bundle.js" defer></script>
+</body>
 ```
-
----
-
-## Parcel Commands
-
-```bash
-npm install --save-dev parcel
-npx parcel index.html
-```
-
-## Vite Quick Start
-
-```bash
-npm create vite@latest my-app
-cd my-app
-npm install
-npm run dev
-```
-
-## esbuild Quick Start
-
-```bash
-npm install --save-dev esbuild
-npx esbuild src/index.js --bundle --minify --outfile=dist/bundle.js
-```
-
-## Summary
-
-- Use Parcel or Vite for easy, fast setups
-- Use Webpack if you need advanced configuration
-- Use esbuild for raw speed and simplicity
 
 ---
 
@@ -1135,7 +1043,7 @@ _You're telling the browser:_
 
 ### For example
 
-```ts {monaco-run}
+```ts {monaco}
 // Click Event
 document.getElementById("myButton").addEventListener("click", function () {
   alert("You clicked the button!");
@@ -1148,9 +1056,6 @@ document.getElementById("nameInput").addEventListener("mouseover", function () {
 ```
 
 ---
-
-layout: center
-class: text-center
 
 ## Bubbling and Capturing
 
@@ -1213,7 +1118,7 @@ thirdDiv.addEventListener("click", () => {
 
 ---
 
-```html {monaco-run}
+```html
 <!DOCTYPE html>
 <html>
   <head>
@@ -1292,7 +1197,16 @@ thirdDiv.addEventListener("click", () => {
 
 ---
 
-layout: center
-class: text-center
-
 # THE END
+
+<div class="pt-12">
+  <span class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
+    Thank you!
+  </span>
+</div>
+
+---
+
+---
+
+---
